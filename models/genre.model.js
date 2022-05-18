@@ -24,4 +24,5 @@ const GenreModel = db.define(process.env.TABLE_GENRES, {
 
 
 
+
 export default GenreModel;

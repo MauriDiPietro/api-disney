@@ -4,12 +4,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 import GenreModel from './genre.model.js'
 
+
 const FilmModel = db.define(process.env.TABLE_FILMS, {
     id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        allowNull: false,
-        primaryKey: true
+        type: DataTypes.INTEGER,
+        unique: true,
+        primaryKey: true,
+        autoIncrement: true
     },
     title: {
         type: DataTypes.STRING
@@ -28,13 +29,22 @@ const FilmModel = db.define(process.env.TABLE_FILMS, {
     // }
 });
 
-FilmModel.belongsToMany(GenreModel, {
-   through: 'FilmGenre'
-})
 
-GenreModel.belongsToMany(FilmModel, {
-    through: 'FilmGenre'
+
+
+// FilmModel.belongsToMany(GenreModel, {through: 'FilmGenre'});
+// GenreModel.belongsToMany(FilmModel, {through: 'FilmGenre'});
+
+//se añade una clave filmId a la tabla Genres, que hace referencia al id de cada film
+FilmModel.hasMany(GenreModel, {
+    foreignKey: 'filmId',
+    sourceKey: 'id'
 });
+
+GenreModel.belongsTo(FilmModel, {
+    foreignKey: 'filmId',
+    targetId: 'id'
+})
 
 
 export default FilmModel;
