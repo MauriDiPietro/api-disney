@@ -33,3 +33,14 @@ export const getFilmById = async (req, res)=>{
         res.json({message: error.message})
     }
 }
+
+export const getDetailFilmsAndCharacters = async (req, res)=>{
+    const { filmId } = req.params
+    try {
+        const film = await FilmModel.findByPk(filmId)
+        const characters = await film.getCharacters()
+        res.json(film, characters)
+    } catch (error) {
+        res.json({message: error.message})
+    }
+}
