@@ -12,7 +12,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(morgan('dev'));
 
 app.use('/characters', characterRoutes)
-app.use('/films', filmsRoutes)
+app.use('/movies', filmsRoutes)
 app.use('/genres', genresRoutes)
 
 
