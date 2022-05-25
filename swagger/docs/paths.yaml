@@ -17,7 +17,7 @@ paths:
           content: 
             application/json:
               schema:
-                $ref: '#/components/parameters/schemas/CreateUserOk'
+                $ref: '#/components/schema/User/CreateUserOk'
         400:
           description: (error) password incorrecta.
           $ref: '#/components/schema/User/PasswordIncorrect'
@@ -29,11 +29,38 @@ paths:
       tags:
       - Users
       summary: Login de usuario previamente registrado en base de datos.
+      parameters:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/BodyLoginUsers'
+        required: true
+      responses:
+        200:
+          description: (OK) Login correcto.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/User/LoginOk'
+        400:
+          description: (error) password incorrecta.
+          $ref: '#/components/schema/User/PasswordIncorrectLogin'
+        500:
+          description: error del servidor.
+          $ref: '#/components/schema/User/NotFound'
   /characters:
     post:
       tags:
       - Characters
       summary: Creación de personajes.
+      parameters: 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/BodyCharactersPost'
+        required: true
   /characters/:characterId/:filmId:
     post:
       tags:

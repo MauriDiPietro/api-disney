@@ -3,5 +3,32 @@ components:
     User:
       PasswordIncorrect: 
         description: confPassword no coincide con password.
+
+      PasswordIncorrectLogin: 
+        description: password incorrecta.
+
       NotFound:
-        description: (500) error del servidor.
+        description: error del servidor.
+
+      LoginOk:
+        type: object
+        properties:
+          accesToken:
+            type: string
+            description: accessToken
+          userId:
+            type: integer
+            description: userId
+        example: 
+          userId: 1
+          accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEzLCJ1c2VybmFtZSI6InVzZXIxQGdtYWlsLmNvbSIsImlhdCI6MTY1MzQ3OTQ5OCwiZXhwIjoxNjUzNDgzMDk4fQ.SNKqr_kA38Au2UMJarF2Cv8xN6de8tGquv4pFLFEoGU"
+        description: (200) Login OK.
+
+      CreateUserOk:
+        type: object
+        properties:
+          message:
+            type: string
+            description: User register OK!.
+        example:
+          message: User register OK!

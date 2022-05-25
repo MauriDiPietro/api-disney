@@ -4,6 +4,7 @@ components:
       
   parameters:
     schemas:
+
       BodyUsersPost: 
         type: object
         required:
@@ -24,10 +25,33 @@ components:
           username: user@mail.com
           password: 123456
           confPassword: 123456
-          
-      CreateUserOk:
+
+      BodyLoginUsers:
         type: object
+        required:
+          - username
+          - password
         properties:
-          message:
+          username:
             type: string
-            description: Mensaje Usuario creado correctamente.
+            description: debe ser correo electrónico.
+          password:
+            type: string
+            description: contraseña del usuario.      
+        example:
+          username: user@mail.com
+          password: 123456
+      
+      BodyCharactersPost:
+        type: object
+        required: 
+          - name
+          - image
+          - age
+          - history
+          - weight
+        properties:
+          name:
+            type: string
+            description: Nombre del personaje.
+          image:
