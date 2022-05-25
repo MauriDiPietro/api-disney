@@ -159,7 +159,7 @@ paths:
               schema:
                 $ref: '#/components/schema/Character/NotFound'
 
-  /characters/byname?name=nombre:
+  /characters/byname?name={name}:
     get:
       tags:
       - Characters
@@ -178,17 +178,82 @@ paths:
             application/json: 
               schema:
                 $ref: '#/components/schema/Character/getCharacterByName'
+        404:
+          description: No se encuentra el personaje.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Character/ErrorGetCharacterByName'
+        500:
+          description: Error de servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Character/NotFound'
 
-  /characters/byfilms?filmId=filmId:
+  /characters/byfilms?filmId={filmId}:
     get:
       tags:
       - Characters
       summary: Filtrar personajes por film/movie/serie donde participó.
-  /characters/byage?age=edad:
+      parameters:
+        - in: path
+          name: filmId
+          required: true
+          description: integer filmId required
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Personajes encontrados por film.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Character/getCharacterByFilm'
+        404:
+          description: No se encuentraron personajes en el film con el id:.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Character/ErrorGetCharacterByFilm'
+        500:
+          description: Error de servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Character/NotFound'
+
+  /characters/byage?age={age}:
     get:
       tags:
       - Characters
       summary: Filtrar personajes por edad.
+      parameters:
+        - in: path
+          name: age
+          required: true
+          description: integer age required
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Personajes encontrados por edad.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Character/getCharacterByAge'
+        404:
+          description: No se encuentraron personajes en el film con el id:.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Character/ErrorGetCharacterByFilm'
+        500:
+          description: Error de servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Character/NotFound'
   /characters/:id:
     put:
       tags:

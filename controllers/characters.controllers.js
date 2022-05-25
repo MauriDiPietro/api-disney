@@ -56,7 +56,11 @@ export const getCharacterByName = async (req, res)=>{
                 attributes: ['title']
              }]
         })
-        res.json(character)
+        if(character){
+            res.json(character)
+        }else{
+            res.status(404).json({message: `No se encontró el personaje con nombre: ${name}`})
+        }
     } catch (error) {
         res.json({message: error.message})
     }
@@ -85,7 +89,11 @@ export const getCharacterByFilms = async (req, res)=>{
     try {
         const film = await FilmModel.findByPk(filmId)
         const characters = await film.getCharacters()
-        res.json(characters)
+        if(characters){
+            res.json(characters)
+        }else{
+            res.status(404).json({message: `no characters were found in the movie with id: ${filmId}`})
+        }
     } catch (error) {
         res.json({message: error.message})
     }

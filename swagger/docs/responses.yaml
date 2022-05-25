@@ -120,6 +120,9 @@ components:
           image:
             type: string
             example: http://picker.com/mickey.jpg
+          films:
+            type: array
+            example: [film1, film2, film3]
 
       ErrorGetCharacterById:
         type: object
@@ -132,6 +135,56 @@ components:
 
       NotFound:
         description: error del servidor.
+        example:
+          message: server error.
 
       getCharacterByName:
-      
+        type: object
+        properties:
+          id:
+            type: string
+            example: 6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b
+          name:
+            type: string
+            example: Mickey Mouse
+          image:
+            type: string
+            example: http://picker.com/mickey.jpg
+          films:
+            type: array
+            example: [film1, film2, film3]
+
+      ErrorGetCharacterByName:
+        type: object
+        properties:
+          message:
+            type: string
+            description: No se encuentra el personaje en la base de datos.
+        example:
+          message: No se encontró el personaje con el nombre Arnulfo.
+
+      getCharacterByFilm:
+        type: array
+        items:  
+          properties:
+            id:
+              type: string
+              example: 6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b
+            name:
+              type: string
+              example: Mickey Mouse
+            image:
+              type: string
+              example: http://picker.com/mickey.jpg
+
+      ErrorGetCharacterByFilm:
+        type: object
+        properties:
+          message:
+            type: string
+            description: No se encuentran personajes en la película con id:.
+        example:
+          message: no characters were found in the movie with id:.
+
+      getCharacterByAge:
+        
