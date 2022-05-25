@@ -1,0 +1,7 @@
+components:
+  schema:
+    User:
+      PasswordIncorrect: 
+        description: confPassword no coincide con password.
+      NotFound:
+        description: (500) error del servidor.

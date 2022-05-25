@@ -1,0 +1,33 @@
+components:
+
+      
+      
+  parameters:
+    schemas:
+      BodyUsersPost: 
+        type: object
+        required:
+          - username
+          - password
+          - confPassword
+        properties:
+          username:
+            type: string
+            description: debe ser correo electrónico.
+          password:
+            type: string
+            description: contraseña del usuario.
+          confPassword:
+            type: string
+            description: confirmación de password.
+        example:
+          username: user@mail.com
+          password: 123456
+          confPassword: 123456
+          
+      CreateUserOk:
+        type: object
+        properties:
+          message:
+            type: string
+            description: Mensaje Usuario creado correctamente.

@@ -1,0 +1,76 @@
+paths:
+  /auth/register:
+    post:
+      tags: 
+      - Users
+      summary: Registro de usuario nuevo en base de datos.
+      parameters: 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/BodyUsersPost'
+        required: true
+      responses:
+        200:
+          description: (OK) Se registró el usuario correctamente.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/parameters/schemas/CreateUserOk'
+        400:
+          description: (error) password incorrecta.
+          $ref: '#/components/schema/User/PasswordIncorrect'
+        500:
+          description: error del servidor.
+          $ref: '#/components/schema/User/NotFound'
+  /auth/login:
+    post:
+      tags:
+      - Users
+      summary: Login de usuario previamente registrado en base de datos.
+  /characters:
+    post:
+      tags:
+      - Characters
+      summary: Creación de personajes.
+  /characters/:characterId/:filmId:
+    post:
+      tags:
+      - Characters
+      summary: Agregar un film/movie/serie a un personaje.
+  /characters/:
+    get:
+      tags:
+      - Characters
+      summary: Listar todos los personajes.
+  /characters/byid/:id:
+    get:
+      tags:
+      - Characters
+      summary: Listar personaje por id.
+  /characters/byname?name=nombre:
+    get:
+      tags:
+      - Characters
+      summary: Búsqueda de personajes por nombre (query params).
+  /characters/byfilms?filmId=filmId:
+    get:
+      tags:
+      - Characters
+      summary: Filtrar personajes por film/movie/serie donde participó.
+  /characters/byage?age=edad:
+    get:
+      tags:
+      - Characters
+      summary: Filtrar personajes por edad.
+  /characters/:id:
+    put:
+      tags:
+      - Characters
+      summary: Editar personaje previamente guardado en base de datos.
+  /characters/:id/:
+    delete:
+      tags:
+      - Characters
+      summary: Eliminar personaje previamente guardado en base de datos.

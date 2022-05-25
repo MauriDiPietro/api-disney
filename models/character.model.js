@@ -27,25 +27,10 @@ const CharacterModel = db.define(process.env.TABLE_CHARACTERS, {
     history: {
         type: DataTypes.STRING
     }
-    // ,
-    // filmes: {
-    //     type: DataTypes.ARRAY(DataTypes.INTEGER)
-    // }
+    
 });
 
-//se añade una clave characterId a la tabla Films, que hace referencia al id de cada character
-// CharacterModel.hasMany(FilmModel, {
-//     foreignKey: 'characterId',
-//     sourceKey: 'id'
-// });
 
-// FilmModel.belongsTo(CharacterModel, {
-//     foreignKey: 'characterId',
-//     targetId: 'id'
-// })
-
-//crea tabla intermedia charactersInFilm
-//habilita metodo CharacterModel.addFilmModel
 CharacterModel.belongsToMany(FilmModel, {through: 'charactersInFilm'});
 FilmModel.belongsToMany(CharacterModel, {through: 'charactersInFilm'});
 
