@@ -74,3 +74,63 @@ paths:
       tags:
       - Characters
       summary: Eliminar personaje previamente guardado en base de datos.
+  /films:
+    post:
+      tags:
+      - Films
+      summary: Creación de película/serie.
+  /films/:
+    get:
+      tags:
+      - Films
+      summary: Listar todos los films.
+  /films/byid/:id:
+    get:
+      tags:
+      - Films
+      summary: Listar film por id.
+  /films/byname?title=title:
+    get:
+      tags:
+      - Films
+      summary: Búsqueda de films por nombre.
+  /films/bygenre?id=genreId:
+    get:
+      tags:
+      - Films
+      summary: Filtrar films por género.
+  /films/order?order=ASC || DESC:
+    get:
+      tags:
+      - Films
+      summary: Ordenar films de manera ascendente o descendente.
+  /films/detail/:id:
+    get:
+      tags:
+      - Films
+      summary: Mostrar film por id con sus personajes.
+  /films/:id:
+    put:
+      tags:
+      - Films
+      summary: Editar film previamente guardado en base de datos.
+  /films/:id/:
+    delete: 
+      tags:
+      - Films
+      summary: Eliminar film previamente guardado en base de datos.
+  /genres:
+    get:
+      tags:
+      - Genres
+      summary: Listar géneros.
+  /genres/:id:
+    get:
+      tags:
+      - Genres
+      summary: Listar género por id.
+  /genres/:
+    post:
+      tags:
+      - Genres
+      summary: Crear género.

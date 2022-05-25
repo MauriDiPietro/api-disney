@@ -19,7 +19,7 @@ router.get('/bygenre', getFilmByGenre);
 router.get('/order', getAllFilmsByOrder);
 // router.get('/order', getAllFilmsDesc);
 router.post('/', createFilm);
-router.get('/:id', getDetailFilmsAndCharacters);
+router.get('/detail/:id', getDetailFilmsAndCharacters);
 router.put('/:id', updateFilm);
 router.delete('/:id', deleteFilm);
 
