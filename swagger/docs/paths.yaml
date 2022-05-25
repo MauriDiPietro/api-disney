@@ -61,11 +61,52 @@ paths:
             schema:
               $ref: '#/components/parameters/schemas/BodyCharactersPost'
         required: true
-  /characters/:characterId/:filmId:
+      responses:
+        200:
+          description: (OK) Creación correcta.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Character/CreateCharacterOk'
+        404:
+          description: (error) falta alguna propiedad del modelo.
+          $ref: '#/components/schema/Character/CreateCharacterError'
+        
+  /characters/{characterId}/{filmId}:
     post:
       tags:
       - Characters
       summary: Agregar un film/movie/serie a un personaje.
+      parameters:
+        - in: path
+          name: characterId
+          required: true
+          description: string ID required
+          schema:
+            type: string
+        - in: path
+          name: filmId
+          required: true
+          description: numeric ID required
+          schema:
+            type: integer
+      example:
+        characterId: jUHuj-68HGVy-u787655uBH-jjiHuu-HybUB8
+        filmId: 3
+      responses:
+        200:
+          description: Film agregado al personaje.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Character/AddFilmToCharacter'
+        404:
+          description: No se encuentra el id.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Character/ErrorAddFilmToCharacter'
+
   /characters/:
     get:
       tags:

@@ -93,7 +93,7 @@ export const addFilmToCharacter = async (req, res)=>{
         const character = await CharacterModel.findByPk(characterId)
         const film = await FilmModel.findByPk(filmId)
         const res = await character.addFilms(film)
-        res.json({message: `add film ${film} to character ${character}`})
+        res.json({message: `add film ${film} to character ${character}.`})
     } catch (error) {
         res.json({message: error.message})
     }

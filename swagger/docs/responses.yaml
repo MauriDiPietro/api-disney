@@ -32,3 +32,55 @@ components:
             description: User register OK!.
         example:
           message: User register OK!
+
+    Character:
+
+      CreateCharacterOk:
+        type: object
+        properties:
+          id:
+            type: string
+            description: Identificador alfanúmerico del personaje.
+          name: 
+            type: string
+            description: Nombre del personaje.
+          image:
+            type: string
+            description: Url de la imagen del personaje.
+          age:
+            type: integer
+            description: Edad del personaje.
+          weight:
+            type: integer
+            description: Peso del personaje.
+          history:
+            type: string
+            description: Historia del personaje.
+        example:
+          id: 2-sdfsdf-UhyGUIb8-gvjiuhiuh87HJvVtgjhk
+          name: Mickey Mouse
+          image: http://picker.com/mickey.jpg
+          age: 94
+          weight: 30
+          history: Es un personaje ficticio estadounidense de la serie del mismo nombre, emblema de la compañía Disney. Creado el 18 de noviembre de 1928, este ratón tiene un origen disputado. La leyenda oficial explica que fue creado por Walt Disney durante un viaje en tren y que su nombre inicial fue Mortimer, pero que cambió a Mickey a petición de su esposa, Lillian. 
+          
+      CreateCharacterError:
+        description: Falta alguna propiedad del modelo.
+
+      AddFilmToCharacter:
+        type: object
+        properties:
+          message:
+            type: string
+            description: Add film to character
+        example:
+          message: add film Mickey y sus amigos to character Mickey.
+
+      ErrorAddFilmToCharacter:
+        type: object
+        properties:
+          message:
+            type: string
+            description: Error al agregar film a personaje.
+        example:
+          message: characterId || filmId is not defined.
