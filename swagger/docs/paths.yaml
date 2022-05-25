@@ -112,16 +112,73 @@ paths:
       tags:
       - Characters
       summary: Listar todos los personajes.
-  /characters/byid/:id:
+      responses:
+        200:
+          description: Lista de personajes guardados en base de datos.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Character/getAllCharacters'
+        500:
+          description: 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Character/ErrorGetAllCharacters'
+
+  /characters/byid/{id}:
     get:
       tags:
       - Characters
       summary: Listar personaje por id.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: string ID required
+          schema:
+            type: string
+      responses:
+        200:
+          description: Personaje encontrado por id.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Character/getCharacterById'
+        404:
+          description: No se encuentra el id.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Character/ErrorGetCharacterById'
+
+        500:
+          description: Error de servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Character/NotFound'
+
   /characters/byname?name=nombre:
     get:
       tags:
       - Characters
       summary: Búsqueda de personajes por nombre (query params).
+      parameters:
+        - in: path
+          name: name
+          required: true
+          description: string name required
+          schema:
+            type: string
+      responses:
+        200:
+          description: Personaje encontrado por nombre.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Character/getCharacterByName'
+
   /characters/byfilms?filmId=filmId:
     get:
       tags:

@@ -34,7 +34,11 @@ export const getCharacterById = async (req, res)=>{
                 attributes: ['title']
              }]
         })
-        res.json(character)
+        if(character){
+            res.json(character)
+        }else{
+            res.status(404).json({message: `No se encontró el id: ${id}`})
+        }
     } catch (error) {
         res.json({message: error.message})
     }

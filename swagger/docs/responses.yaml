@@ -57,7 +57,7 @@ components:
             type: string
             description: Historia del personaje.
         example:
-          id: 2-sdfsdf-UhyGUIb8-gvjiuhiuh87HJvVtgjhk
+          id: 6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b
           name: Mickey Mouse
           image: http://picker.com/mickey.jpg
           age: 94
@@ -84,3 +84,54 @@ components:
             description: Error al agregar film a personaje.
         example:
           message: characterId || filmId is not defined.
+
+      getAllCharacters:
+        type: array
+        items:  
+          properties:
+            id:
+              type: string
+              example: 6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b
+            name:
+              type: string
+              example: Mickey Mouse
+            image:
+              type: string
+              example: http://picker.com/mickey.jpg
+
+      ErrorGetAllCharacters:
+        type: object
+        properties:
+          message:
+            type: string
+            description: Error al conectarse a la base de datos.
+        example:
+          message: error de servidor.
+
+      getCharacterById:
+        type: object
+        properties:
+          id:
+            type: string
+            example: 6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b
+          name:
+            type: string
+            example: Mickey Mouse
+          image:
+            type: string
+            example: http://picker.com/mickey.jpg
+
+      ErrorGetCharacterById:
+        type: object
+        properties:
+          message:
+            type: string
+            description: No se encuentra el id en la base de datos.
+        example:
+          message: No se encontró el id 6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b.
+
+      NotFound:
+        description: error del servidor.
+
+      getCharacterByName:
+      
