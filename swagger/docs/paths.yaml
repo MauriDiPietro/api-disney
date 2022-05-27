@@ -254,16 +254,76 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schema/Character/NotFound'
-  /characters/:id:
+  /characters/{id}:
     put:
       tags:
       - Characters
       summary: Editar personaje previamente guardado en base de datos.
-  /characters/:id/:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: string id required
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/BodyCharactersPost'
+        required: true
+      responses:
+        200:
+          description: Personaje actualizado.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Character/CreateCharacterOk'
+        404:
+          description: No se encuentraron personajes con el id:.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Character/ErrorGetCharacterById'
+        500:
+          description: Error de servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Character/NotFound'
+
+  /characters/{id}/:
     delete:
       tags:
       - Characters
       summary: Eliminar personaje previamente guardado en base de datos.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: string id required
+          schema:
+            type: string
+      responses:
+        200:
+          description: Personaje eliminado.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Character/deleteCharacterOk'
+        404:
+          description: No se encuentraron personajes con el id:.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Character/ErrorGetCharacterById'
+        500:
+          description: Error de servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Character/NotFound'
+
   /films:
     post:
       tags:

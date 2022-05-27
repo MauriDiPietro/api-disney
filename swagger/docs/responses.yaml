@@ -187,4 +187,14 @@ components:
           message: no characters were found in the movie with id:.
 
       getCharacterByAge:
+
+      deleteCharacterOk:
+        type: object
+        properties:
+          message:
+            type: string
+            description: Se eliminó el personaje.
+        example:
+          message: character deleted ok.
+
         

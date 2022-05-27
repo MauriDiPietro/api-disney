@@ -113,14 +113,18 @@ export const addFilmToCharacter = async (req, res)=>{
 
 export const updateCharacter = async (req, res)=>{
     try{
-        await CharacterModel.update(req.body, {
+        const character = await CharacterModel.update(req.body, {
             where: {
                 id: req.params.id
             }
         });
-        res.json({
-            'message': `Character updated ok`
-        })
+        if(character){
+            res.json({
+                message: `Character updated ok`
+            })
+        }else{
+            res.status(404).json({message: `No se encontró el id: ${id}`})
+        }
     }catch(err){
         res.json({message: err.message});
     }
