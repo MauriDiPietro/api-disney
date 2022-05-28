@@ -389,4 +389,96 @@ components:
                   6ec0bd7f-11c0-43da-975e-2a8ad9kjybim
                 ]
 
+        deleteFilmOk:
+          type: object
+          properties:
+            message:
+              type: integer
+              description: Se eliminó el film.
+          example:
+            message: film deleted ok.
+
+        ErrorGetFilmById:
+          type: object
+          properties:
+            message:
+              type: integer
+              description: No se encuentran films con id:.
+          example:
+            message: no films were found with id:.
+
+    Genre:
+      CreateGenreOk:    
+        type: object
+        properties:
+          id:
+            type: integer
+            description: Identificador numérico del género.
+          name: 
+            type: string
+            description: Nombre del género.
+          image:
+            type: string
+            description: Url de la imagen del género.
+        example:
+          id: 2
+          name: Familiar
+          image: http://picker.com/genre-family.jpg
+          
+      CreateGenreError:
+        description: Falta alguna propiedad del modelo.
+
+      getAllGenres:
+        type: array
+        items:  
+          properties:
+            id:
+              type: integer
+              example: 2
+            name:
+              type: string
+              example: Familiar
+            image:
+              type: string
+              example: http://picker.com/genre-family.jpg
+
+      ErrorGetAllGenres:
+        type: object
+        properties:
+          message:
+            type: string
+            description: No existe ningún genre en la base de datos.
+        example:
+          message: error de servidor.
+
+      getGenreById:
+        type: object
+        properties:
+          id:
+            type: integer
+            example: 6
+          name:
+            type: string
+            example: Infantil
+          image:
+            type: string
+            example: http://picker.com/genre-kids.jpg
+
+      ErrorGetGenreById:
+        type: object
+        properties:
+          message:
+            type: string
+            description: No se encuentra el id en la base de datos.
+        example:
+          message: No se encontró el id 6.
+
+      NotFound:
+        type: object
+        properties:
+          message:
+            type: string
+            description: Error de servidor.
+        example:
+          message: error de servidor.
         

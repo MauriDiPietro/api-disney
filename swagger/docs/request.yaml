@@ -114,3 +114,20 @@ components:
           image: http://picker.com/movie1.jpg
           date: 20-10-2020
           rating: 5
+
+      BodyGenrePost:
+        type: object
+        required:
+          - name
+          - image
+        properties:
+          name:
+            type: string
+            description: Nombre del género.
+          image:
+            type: string
+            description: URL de imagen del género.
+        example:
+          name: Familiar
+          image: http://picker.com/genre-family.jpg
+        

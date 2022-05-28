@@ -527,23 +527,143 @@ paths:
       tags:
       - Films
       summary: Editar film previamente guardado en base de datos.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: integer id required
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/BodyCharactersPost'
+        required: true
+      responses:
+        200:
+          description: Film actualizado.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Film/CreateFilmOk'
+        404:
+          description: No se encuentraron personajes con el id:.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Film/ErrorGetFilmById'
+        500:
+          description: Error de servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Film/NotFound'
+
   /films/{id}/:
     delete: 
       tags:
       - Films
       summary: Eliminar film previamente guardado en base de datos.
-  /genres:
-    get:
-      tags:
-      - Genres
-      summary: Listar géneros.
-  /genres/{id}:
-    get:
-      tags:
-      - Genres
-      summary: Listar género por id.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: integer id required
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Film eliminado.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Film/deleteFilmOk'
+        404:
+          description: No se encuentra Film con el id:.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Film/ErrorGetFilmById'
+        500:
+          description: Error de servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Film/NotFound'
+
   /genres/:
     post:
       tags:
       - Genres
       summary: Crear género.
+      parameters: 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/BodyGenrePost'
+        required: true
+      responses:
+        200:
+          description: (OK) Creación correcta.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Genre/CreateGenreOk'
+        404:
+          description: (error) falta alguna propiedad del modelo.
+          $ref: '#/components/schema/Genre/CreateGenreError'
+
+  /genres:
+    get:
+      tags:
+      - Genres
+      summary: Listar géneros.
+      responses:
+        200:
+          description: Lista de géneros guardados en base de datos.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Genres/getAllGenres'
+        500:
+          description: 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Genres/ErrorGetAllGenres'
+
+  /genres/{id}:
+    get:
+      tags:
+      - Genres
+      summary: Listar género por id.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: integer ID required
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Género encontrado por id.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Genre/getGenreById'
+        404:
+          description: No se encuentra el id.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Genre/ErrorGetGenreById'
+
+        500:
+          description: Error de servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Genre/NotFound'
+      
