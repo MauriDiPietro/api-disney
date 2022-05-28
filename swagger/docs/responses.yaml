@@ -334,78 +334,70 @@ components:
               type: integer
               example: 5
 
-        ErrorGetFilmByGenre:
-          type: object
+      ErrorGetFilmByGenre:
+        type: object
+        properties:
+          message:
+            type: string
+            description: No se encuentran films/movies/series en el género con id:.
+        example:
+          message: no films were found in the genre with id:.
+
+      getCharacterByOrderAsc:
+        type: array
+        items:  
           properties:
-            message:
+            id:
+              type: integer
+              example: 6
+            title:
               type: string
-              description: No se encuentran films/movies/series en el género con id:.
-          example:
-            message: no films were found in the genre with id:.
+              example: La casa de Mickey Mouse
+            image:
+              type: string
+              example: http://picker.com/la-casa-de-mickey.jpg
+            date:
+              type: string
+              example: 20-02-1995
+            rating:
+              type: integer
+              example: 5
 
-        getCharacterByOrderAsc:
-          type: array
-          items:  
-            properties:
-              id:
-                type: integer
-                example: 6
-              title:
-                type: string
-                example: La casa de Mickey Mouse
-              image:
-                type: string
-                example: http://picker.com/la-casa-de-mickey.jpg
-              date:
-                type: string
-                example: 20-02-1995
-              rating:
-                type: integer
-                example: 5
-
-        getFilmByIdWithCh:
-          type: array
-          items:  
-            properties:
-              id:
-                type: integer
-                example: 6
-              title:
-                type: string
-                example: La casa de Mickey Mouse
-              image:
-                type: string
-                example: http://picker.com/la-casa-de-mickey.jpg
-              date:
-                type: string
-                example: 20-02-1995
-              rating:
-                type: integer
-                example: 5
-              characters:
-                type: array
-                example: [
+      getFilmByIdWithCh:
+        type: array
+        items:  
+          properties:
+            id:
+              type: integer
+              example: 6
+            title:
+              type: string
+              example: La casa de Mickey Mouse
+            image:
+              type: string
+              example: http://picker.com/la-casa-de-mickey.jpg
+            date:
+              type: string
+              example: 20-02-1995
+            rating:
+              type: integer
+              example: 5
+            characters:
+              type: array
+              example: [
                   6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b,
                   6ec0bd7f-11c0-43da-975e-2a8ad9kjybim
                 ]
 
-        deleteFilmOk:
-          type: object
-          properties:
-            message:
-              type: integer
-              description: Se eliminó el film.
-          example:
-            message: film deleted ok.
+      deleteFilmOk:
+        type: object
+        properties:
+          message:
+            type: integer
+            description: Se eliminó el film.
+        example:
+          message: film deleted ok.
 
-        ErrorGetFilmById:
-          type: object
-          properties:
-            message:
-              type: integer
-              description: No se encuentran films con id:.
-          example:
-            message: no films were found with id:.
 
     Genre:
       CreateGenreOk:    

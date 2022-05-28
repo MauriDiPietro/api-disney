@@ -626,13 +626,13 @@ paths:
           content:
             application/json: 
               schema:
-                $ref: '#/components/schema/Genres/getAllGenres'
+                $ref: '#/components/schema/Genre/getAllGenres'
         500:
           description: 
           content:
             application/json:
               schema:
-                $ref: '#/components/schema/Genres/ErrorGetAllGenres'
+                $ref: '#/components/schema/Genre/ErrorGetAllGenres'
 
   /genres/{id}:
     get:
