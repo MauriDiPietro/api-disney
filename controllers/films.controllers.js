@@ -29,7 +29,11 @@ export const getFilmById = async (req, res)=>{
                 id
             }
         })
-        res.json(film)
+        if(film){
+            res.json(film)
+        }else{
+            res.status(404).json({message: `No se encontró el id: ${id}`})
+        }
     } catch (error) {
         res.json({message: error.message})
     }
@@ -83,12 +87,12 @@ export const getFilmByName = async (req, res)=>{
             where :{
                 title
             },
-            // include: [{ 
-            //     model: FilmModel,
-            //     attributes: ['title']
-            //  }]
         })
-        res.json(film)
+        if(film){
+            res.json(film)
+        }else{
+            res.status(404).json({message: `No se encontró el title: ${title}`})
+        }
     } catch (error) {
         res.json({message: error.message})
     }
@@ -99,7 +103,11 @@ export const getFilmByGenre = async (req, res)=>{
     try {
         const genre = await GenreModel.findByPk(id)
         const films = await genre.getFilm()
-        res.json(films)
+        if(films){
+            res.json(films)
+        }else{
+            res.status(404).json({message: `no films were found in the genre with id: ${id}`})
+        }
     } catch (error) {
         res.json({message: error.message})
     }
@@ -130,30 +138,3 @@ export const getAllFilmsByOrder = async (req, res)=>{
         res.json({message: error.message})
     }
 }
-
-// export const getAllFilmsDesc = async (req, res)=>{
-//     try {
-//         if(req.query.order === 'DESC'){
-//             const films = await FilmModel.findAll({
-//                 attributes: ['title', 'date', 'image'],
-//                 order: [
-//                     ['title', 'DESC'],
-//                 ]
-//             })
-//             res.json(films)
-//         }
-//     } catch (error) {
-//         res.json({message: error.message})
-//     }
-// }
-
-/**export const getCharacterByFilms = async (req, res)=>{
-    const { filmId } = req.query
-    try {
-        const film = await FilmModel.findByPk(filmId)
-        const characters = await film.getCharacters()
-        res.json(characters)
-    } catch (error) {
-        res.json({message: error.message})
-    }
-} */

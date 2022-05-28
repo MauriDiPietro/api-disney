@@ -371,26 +371,157 @@ paths:
       tags:
       - Films
       summary: Listar film por id.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: integer ID required
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Film/movie/serie encontrado por id.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Film/getFilmById'
+        404:
+          description: No se encuentra el id.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Film/ErrorGetFilmById'
+
+        500:
+          description: Error de servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Film/NotFound'
+
   /films/byname?title={title}:
     get:
       tags:
       - Films
       summary: Búsqueda de films por nombre.
+      parameters:
+        - in: path
+          name: title
+          required: true
+          description: string title required
+          schema:
+            type: string
+      responses:
+        200:
+          description: Film/movie/serie encontrado por nombre.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Film/getFilmByName'
+        404:
+          description: No se encuentra el movie/film/serie.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Film/ErrorGetFilmByName'
+        500:
+          description: Error de servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Film/NotFound'
+
   /films/bygenre?id={genreId}:
     get:
       tags:
       - Films
       summary: Filtrar films por género.
+      parameters:
+        - in: path
+          name: genreId
+          required: true
+          description: integer genreId required
+          schema:
+            type: integer
+       responses:
+        200:
+          description: Films/movies/series encontrados por género.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Film/getFilmByGenre'
+        404:
+          description: No se encuentraron Films/movies/series en el género con el id:.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Film/ErrorGetFilmByGenre'
+        500:
+          description: Error de servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Film/NotFound'
+
   /films/order?order={ASC} || {DESC}:
     get:
       tags:
       - Films
       summary: Ordenar films de manera ascendente o descendente.
+      parameters:
+        - in: path
+          name: ASC
+          required: true
+          description: string order required
+          schema:
+            type: string
+      responses:
+        200:
+          description: Films/movies/series ordenados alfabéticamente de manera ascendente.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Film/getCharacterByOrderAsc'
+        500:
+          description: Error de servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Character/NotFound'
+              
   /films/detail/{id}:
     get:
       tags:
       - Films
       summary: Mostrar film por id con sus personajes.
+       parameters:
+        - in: path
+          name: id
+          required: true
+          description: integer ID required
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Film/movie/serie encontrado por id.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Film/getFilmByIdWithCh'
+        404:
+          description: No se encuentra el id.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Film/ErrorGetFilmById'
+
+        500:
+          description: Error de servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Film/NotFound'
+
   /films/{id}:
     put:
       tags:
