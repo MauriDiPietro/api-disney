@@ -443,7 +443,7 @@ paths:
           description: integer genreId required
           schema:
             type: integer
-       responses:
+      responses:
         200:
           description: Films/movies/series encontrados por género.
           content:
@@ -494,7 +494,7 @@ paths:
       tags:
       - Films
       summary: Mostrar film por id con sus personajes.
-       parameters:
+      parameters:
         - in: path
           name: id
           required: true
