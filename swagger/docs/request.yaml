@@ -88,3 +88,29 @@ components:
         example:
           characterId: jUHuj-68HGVy-u787655uBH-jjiHuu-HybUB8
           filmId: 4
+      
+      BodyFilmPost:
+        type: object
+        required:
+          - title
+          - image
+          - date
+          - rating
+        properties:
+          title:
+            type: string
+            description: Título del film/movie/serie.
+          image:
+            type: string
+            description: URL de imagen del film/movie/serie.
+          date:
+            type: string
+            description: Fecha de lanzamiento de film/movie/serie.
+          rating:
+            type: integer
+            description: Puntaje del film/movie/serie.
+        example:
+          title: Las aventuras de Donald.
+          image: http://picker.com/movie1.jpg
+          date: 20-10-2020
+          rating: 5

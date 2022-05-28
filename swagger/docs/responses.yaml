@@ -197,4 +197,56 @@ components:
         example:
           message: character deleted ok.
 
+    Film:  
+      CreateFilmOk:
+        type: object
+        properties:
+          id:
+            type: integer
+            description: Identificador numérico del film/movie/serie.
+          title: 
+            type: string
+            description: Título del film/movie/serie.
+          image:
+            type: string
+            description: URL de imagen del film/movie/serie.
+          date:
+            type: string
+            description: Fecha de lanzamiento de film/movie/serie.
+          rating:
+            type: integer
+            description: Puntaje del film/movie/serie.
+        example:
+          id: 6
+          title: Las aventuras de Donald.
+          image: http://picker.com/movie1.jpg
+          date: 20-10-2020
+          rating: 5
+
+      getAllFilms:
+        type: array
+        items:  
+          properties:
+            id:
+              type: integer
+              example: 2
+            title:
+              type: string
+              example: Las aventuras de Mickey.
+            date: 
+              type: string
+              example: 20-10-2020
+            image:
+              type: string
+              example: http://picker.com/film1.jpg
+
+      ErrorGetAllFilms:
+        type: object
+        properties:
+          message:
+            type: string
+            description: Error al conectarse a la base de datos.
+        example:
+          message: error de servidor.
+
         

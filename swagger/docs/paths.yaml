@@ -329,42 +329,74 @@ paths:
       tags:
       - Films
       summary: Creación de película/serie.
+      parameters: 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/parameters/schemas/BodyFilmPost'
+        required: true
+      responses:
+        200:
+          description: (OK) Se registró el film/movie/serie correctamente.
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schema/Film/CreateFilmOk'
+        500:
+          description: error del servidor.
+          $ref: '#/components/schema/Character/NotFound'
+
   /films/:
     get:
       tags:
       - Films
       summary: Listar todos los films.
-  /films/byid/:id:
+      responses:
+        200:
+          description: Lista de films/movies/series guardados en base de datos.
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schema/Film/getAllFilms'
+        500:
+          description: 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schema/Film/ErrorGetAllFilms'
+
+  /films/byid/{id}:
     get:
       tags:
       - Films
       summary: Listar film por id.
-  /films/byname?title=title:
+  /films/byname?title={title}:
     get:
       tags:
       - Films
       summary: Búsqueda de films por nombre.
-  /films/bygenre?id=genreId:
+  /films/bygenre?id={genreId}:
     get:
       tags:
       - Films
       summary: Filtrar films por género.
-  /films/order?order=ASC || DESC:
+  /films/order?order={ASC} || {DESC}:
     get:
       tags:
       - Films
       summary: Ordenar films de manera ascendente o descendente.
-  /films/detail/:id:
+  /films/detail/{id}:
     get:
       tags:
       - Films
       summary: Mostrar film por id con sus personajes.
-  /films/:id:
+  /films/{id}:
     put:
       tags:
       - Films
       summary: Editar film previamente guardado en base de datos.
-  /films/:id/:
+  /films/{id}/:
     delete: 
       tags:
       - Films
@@ -374,7 +406,7 @@ paths:
       tags:
       - Genres
       summary: Listar géneros.
-  /genres/:id:
+  /genres/{id}:
     get:
       tags:
       - Genres
